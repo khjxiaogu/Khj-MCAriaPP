@@ -1,3 +1,21 @@
+/**
+ *
+ *  Copyright (C) 2018-2019 khjxiaogu
+ *  Copyright (c) 2007 Go Watanabe
+ *  Author: khjxiaogu
+ *  Web: http://www.khjxiaogu.com
+ *
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+*/
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
@@ -88,61 +106,25 @@ public:
 	virtual void close() = 0;
 
 	bool isError;
-
-	/**
-	 * コンストラクタ
-	 */
 	IReader();
 
 	virtual ~IReader();;
-
-	/**
-	 * 行末まで読み飛ばす
-	 */
 	void toEOL();
-
-	/**
-	 * 空白とコメントを除去して次の文字を返す
-	 */
 	int next();
-
-	/**
-	 * 指定された文字数分の文字列を取得
-	 * @param str 文字列の格納先
-	 * @param n 文字数
-	 */
 	void next(std::wstring& str, int n);
 
 	void parseObject(variant& var);
 
 	void parseArray(variant& var);
 
-	/**
-	 * クオート文字列のパース
-	 * @param quote クオート文字
-	 * @param var 格納先
-	 */
 	void parseQuoteString(int quote, variant& var);
 
-	/**
-	 * 指定した文字が数値の１文字目の構成要素かどうか
-	 */
 	bool isNumberFirst(int ch);
 
-	/**
-	 * 指定した文字が数値の構成要素かどうか
-	 */
 	bool isNumber(int ch);
 
-	/**
-	 * 指定した文字が文字列の構成要素かどうか
-	 */
 	bool isString(int ch);
 
-	/**
-	 * パースの実行
-	 * @param var 結果格納先
-	 */
 	void parse(variant& var);
 };
 
